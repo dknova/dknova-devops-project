@@ -1,10 +1,3 @@
-name: CI-CD Pipeline
-
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -27,8 +20,22 @@ jobs:
         run: |
           PYTHONPATH=. pytest tests/
 
-  docker:
+  trivy:
     needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy Filesystem Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          scan-ref: .
+
+  docker:
+    needs: trivy
     runs-on: ubuntu-latest
 
     permissions:

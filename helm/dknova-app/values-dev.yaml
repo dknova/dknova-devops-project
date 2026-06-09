@@ -1,0 +1,5 @@
+replicaCount: 1
+
+image:
+  repository: dknova-app
+  tag: v1

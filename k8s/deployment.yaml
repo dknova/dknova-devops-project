@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: nginx-deployment
+  name: dknova-deployment
   namespace: dev
 
 spec:
@@ -10,16 +10,18 @@ spec:
 
   selector:
     matchLabels:
-      app: nginx
+      app: dknova-app
 
   template:
     metadata:
       labels:
-        app: nginx
+        app: dknova-app
 
     spec:
       containers:
-      - name: nginx
-        image: nginx
+      - name: dknova-app
+        image: dknova2/dknova-devops-app:latest
+        imagePullPolicy: Always
+
         ports:
-        - containerPort: 80
+        - containerPort: 8000

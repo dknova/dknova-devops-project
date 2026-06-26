@@ -46,6 +46,12 @@ pipeline {
         '''
     }
 }
+       stage('Build Docker Image') {
+    steps {
+        echo 'Building Docker image...'
+        sh 'docker build -t dknova-devops-app:latest .'
+    }
+}
         stage('Pipeline Complete') {
             steps {
                 echo 'CI Pipeline executed successfully.'

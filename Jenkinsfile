@@ -52,6 +52,21 @@ pipeline {
         sh 'docker build -t dknova-devops-app:latest .'
     }
 }
+      stage('Push Docker Image') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub',
+            usernameVariable: 'DOCKER_USER',
+            passwordVariable: 'DOCKER_PASS'
+        )]) {
+            sh '''
+                echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                docker tag dknova-devops-app:latest dknova2/dknova-devops-app:latest
+                docker push dknova2/dknova-devops-app:latest
+            '''
+        }
+    }
+}
         stage('Pipeline Complete') {
             steps {
                 echo 'CI Pipeline executed successfully.'

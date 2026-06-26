@@ -1,59 +1,47 @@
-# DKNOVA DevOps Project
+# Developer Setup Guide
 
-# Project Overview
-
-This project is a FastAPI-based application with Docker, Kubernetes, Helm, and Prometheus monitoring support. It includes an automated developer setup script (`setup.sh`) to simplify onboarding.
-
-
-# Prerequisites
-
-* Git
-* Linux or macOS
-* Internet connection
-
-
-# Clone the Repository
+## Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/dknova/dknova-devops-project.git
 cd dknova-devops-project
 ```
 
+---
 
-
-# Run the Project
-
-Give execute permission to the setup script:
+## Step 2: Make the Setup Script Executable
 
 ```bash
 chmod +x setup.sh
 ```
 
-Run the setup script:
+---
+
+## Step 3: Run the Setup Script
 
 ```bash
 ./setup.sh
 ```
 
-The setup script will automatically:
+---
 
-* Detect the operating system.
-* Check/install Python (if supported by the script).
-* Check/install Git (if supported by the script).
-* Create a Python virtual environment.
-* Install project dependencies.
-* Find an available port.
-* Start the FastAPI application.
+## Step 4: Automated Setup
 
+The setup script automatically performs the following tasks:
 
+* Detects the operating system.
+* Checks and installs Python (if required).
+* Checks and installs Git (if required).
+* Creates a Python virtual environment.
+* Installs project dependencies.
+* Finds an available port.
+* Starts the FastAPI application.
 
-## Access the Application
+---
 
-After the application starts, open:
+## Step 5: Access the Application
 
-```text
-http://localhost:<PORT>/docs
-```
+Open the URL displayed in the terminal.
 
 Example:
 
@@ -67,21 +55,5 @@ or
 http://localhost:8002/docs
 ```
 
-depending on the available port.
-
----
-
-# Project Structure
-
-```
-src/                 Application source code
-tests/               Unit tests
-k8s/                 Kubernetes manifests
-helm/                Helm chart
-monitoring/          Monitoring configuration
-Dockerfile           Docker image
-requirements.txt     Python dependencies
-setup.sh             Automated developer setup
-README.md            Project documentation
-```
+The setup script automatically selects an available port if the default port is already in use.
 

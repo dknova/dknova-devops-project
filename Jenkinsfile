@@ -37,6 +37,15 @@ pipeline {
     }
 }
 
+        stage('Run Tests') {
+    steps {
+        echo 'Running Unit Tests...'
+        sh '''
+            . venv/bin/activate
+            PYTHONPATH=. python -m pytest tests/
+        '''
+    }
+}
         stage('Pipeline Complete') {
             steps {
                 echo 'CI Pipeline executed successfully.'

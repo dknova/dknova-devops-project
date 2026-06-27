@@ -67,6 +67,15 @@ pipeline {
         }
     }
 }
+        stage('Deploy to Kubernetes') {
+    steps {
+        echo 'Deploying application to Kubernetes...'
+        sh '''
+            kubectl apply -f k8s/
+            kubectl rollout status deployment/dknova-deployment -n dev
+        '''
+    }
+}
         stage('Pipeline Complete') {
             steps {
                 echo 'CI Pipeline executed successfully.'
